@@ -4,6 +4,7 @@ const cors = require("cors");
 const db_connect = require("./db_connect");
 const app = express();
 const postRoutes = require('./routes/posts');
+const errorHandler = require('./middleware/errorHandler')
 
 const PORT = process.env.PORT || 8000;
 
@@ -19,6 +20,9 @@ app.use(
 );
 
 app.use('/api/posts', postRoutes);
+
+
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
