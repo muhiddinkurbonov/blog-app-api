@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const db_connect = require("./db_connect");
 const app = express();
+const postRoutes = require('./routes/posts');
 
 const PORT = process.env.PORT || 8000;
 
@@ -17,9 +18,7 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.send("Test");
-});
+app.use('/api/posts', postRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
