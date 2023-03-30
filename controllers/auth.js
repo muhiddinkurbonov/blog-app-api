@@ -1,17 +1,16 @@
-const User = require("../models/user");
+const User = require('../models/user');
 const { hash } = require("bcryptjs");
 const register = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     // check if user already exists
-    const user = await user.findOne({ email: email });
+    const user = await User.findOne({ email: email });
     if (user) {
-      throw new Error({
-        message: "User already exists! Try logging in. 😄",
-        status: 500,
-      });
+     return res.status(500).json({
+       message: "User already exists! Try logging in."
+     });
     }
-      // if user doesn't exit, create a new user
+      // if user doesn't exist, create a new user
       // hashing the password
       const passwordHashed = await hash(password, 10);
       const newUser = new User({

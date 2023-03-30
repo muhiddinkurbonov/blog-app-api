@@ -3,7 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const db_connect = require("./db_connect");
 const app = express();
-const postRoutes = require('./routes/posts');
+const authRoutes = require("./routes/auth");
+// const userRoutes = require("./routes/users");
+// const postRoutes = require('./routes/posts');
 const errorHandler = require('./middleware/errorHandler')
 
 const PORT = process.env.PORT || 8000;
@@ -19,7 +21,9 @@ app.use(
   })
 );
 
-app.use('/api/posts', postRoutes);
+app.use('/api/auth', authRoutes);
+// app.use('/api/users', userRoutes);
+// app.use('/api/posts', postRoutes);
 
 
 app.use(errorHandler);
